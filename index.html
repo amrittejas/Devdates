@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devdates - Professional Developer Collaboration</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Landing Page -->
+    <div id="landing-page" class="page active">
+        <header class="ms-header">
+            <div class="ms-container">
+                <div class="ms-nav">
+                    <div class="ms-logo">
+                        <i class="fas fa-code-branch"></i>
+                        <span>Devdates</span>
+                    </div>
+                    <nav class="ms-nav-links">
+                        <a href="feature.html" class="ms-nav-link">Features</a>
+                        <a href="pricing.html" class="ms-nav-link">Pricing</a>
+                        <a href="about.html" class="ms-nav-link">About</a>
+                    </nav>
+                    <div class="ms-nav-actions">
+                        <button class="ms-btn ms-btn-ghost" onclick="showLogin()">Sign in</button>
+                        <button class="ms-btn ms-btn-primary" onclick="showSignup()">Get started</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="ms-hero">
+            <div class="ms-container">
+                <div class="ms-hero-content">
+                    <h1 class="ms-hero-title">Collaborate. Code. Create.</h1>
+                    <p class="ms-hero-subtitle">The professional platform for developer teams to manage projects, share knowledge, and build exceptional software together.</p>
+                    <div class="ms-hero-actions">
+                        <button class="ms-btn ms-btn-primary ms-btn-large" onclick="showSignup()">
+                            <i class="fas fa-rocket"></i>
+                            Start collaborating
+                        </button>
+                        <button class="ms-btn ms-btn-outline ms-btn-large" onclick="showLogin()">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Sign in
+                        </button>
+                        
+                       
+
+                    </div>
+                </div>
+
+                <div class="ms-features-grid">
+                    <div class="ms-feature-card">
+                        <div class="ms-feature-icon ms-bg-blue">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <h3>Project Management</h3>
+                        <p>Organize development projects with kanban boards, sprint planning, and comprehensive task tracking.</p>
+                    </div>
+                    
+                    <div class="ms-feature-card" onclick="showFindCoDeveloper()" style="cursor:pointer;">
+                    <div class="ms-feature-icon ms-bg-orange">
+                     <i class="fas fa-user-cog"></i>
+                    </div>
+                    <h3>Find Co-Developer</h3>
+                    <p>Match with developers who share similar skills, tech stack preferences, and project goals.</p>
+                     </div>
+                     <div class="ms-feature-card" onclick="showFindCoFounder()" style="cursor:pointer;">
+                     <div class="ms-feature-icon ms-bg-pink">
+                         <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Find Co-Founder</h3>
+                        <p>Discover motivated founders aligned with your vision, skills, and startup ambitions.</p>
+                    </div>
+
+
+                    <div class="ms-feature-card">
+                        <div class="ms-feature-icon ms-bg-teal">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Code Collaboration</h3>
+                        <p>Share code snippets, conduct peer reviews, and maintain version control with integrated workflows.</p>
+                    </div>
+                    <div class="ms-feature-card">
+                        <div class="ms-feature-icon ms-bg-purple">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Team Communication</h3>
+                        <p>Connect with developers through integrated messaging, video calls, and project discussions.</p>
+                    </div>
+                    <div class="ms-feature-card">
+                        <div class="ms-feature-icon ms-bg-green">
+                            <i class="fas fa-chart-analytics"></i>
+                        </div>
+                        <h3>Analytics & Insights</h3>
+                        <p>Track team productivity, project metrics, and delivery performance with detailed analytics.</p>
+                    </div>
+                     
+                   
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="ms-modal hidden">
+        <div class="ms-modal-backdrop" onclick="hideModal('login-modal')"></div>
+        <div class="ms-modal-content">
+            <div class="ms-modal-header">
+                <h2>Sign in to Devdates</h2>
+                <button class="ms-modal-close" onclick="hideModal('login-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="ms-modal-body">
+                <form id="login-form" onsubmit="handleLogin(event)">
+                    <div class="ms-form-group">
+                        <label class="ms-form-label">Email address</label>
+                        <input type="email" class="ms-form-control" value="alex@devdates.com" required>
+                    </div>
+                    <div class="ms-form-group">
+                        <label class="ms-form-label">Password</label>
+                        <input type="password" class="ms-form-control" value="password123" required>
+                    </div>
+                    <div class="ms-form-row">
+                        <div class="ms-checkbox">
+                            <input type="checkbox" id="remember-me">
+                            <label for="remember-me">Keep me signed in</label>
+                        </div>
+                        <a href="#" class="ms-link">Forgot password?</a>
+                    </div>
+                    
+                    <div class="ms-auth-options">
+                        <button type="submit" class="ms-btn ms-btn-primary ms-btn-full">Sign in</button>
+                        
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="ms-modal hidden">
+        <div class="ms-modal-backdrop" onclick="hideModal('signup-modal')"></div>
+        <div class="ms-modal-content">
+            <div class="ms-modal-header">
+                <h2>Create your account</h2>
+                <button class="ms-modal-close" onclick="hideModal('signup-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="ms-modal-body">
+                <form id="signup-form" onsubmit="handleSignup(event)">
+                    <div class="ms-form-group">
+                        <label class="ms-form-label">Full name</label>
+                        <input type="text" class="ms-form-control" required>
+                    </div>
+                    <div class="ms-form-group">
+                        <label class="ms-form-label">Email address</label>
+                        <input type="email" class="ms-form-control" required>
+                    </div>
+                    <div class="ms-form-group">
+                        <label class="ms-form-label">Password</label>
+                        <input type="password" class="ms-form-control" id="signup-password" required>
+                        <div class="ms-password-strength">
+                            <div class="ms-strength-bar" id="strength-bar"></div>
+                            <span class="ms-strength-text" id="strength-text">Enter a password</span>
+                        </div>
+                    </div>
+                    <div class="ms-form-group">
+                        <label class="ms-form-label">Role</label>
+                        <select class="ms-form-control" required>
+                            <option value="">Select your role</option>
+                            <option value="developer">Developer</option>
+                            <option value="designer">Designer</option>
+                            <option value="manager">Project Manager</option>
+                            <option value="devops">DevOps Engineer</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="ms-btn ms-btn-primary ms-btn-full">Create account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard-page" class="page hidden">
+        <header class="ms-app-header">
+            <div class="ms-app-nav">
+                <div class="ms-app-logo">
+                    <i class="fas fa-code-branch"></i>
+                    <span>Devdates</span>
+                </div>
+                <nav class="ms-main-nav">
+                    <a href="#" onclick="showSection('dashboard')" class="ms-nav-item active">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="#" onclick="showSection('projects')" class="ms-nav-item">
+                        <i class="fas fa-folder-open"></i>
+                        <span>Projects</span>
+                    </a>
+                    <a href="#" onclick="showSection('team')" class="ms-nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>Team</span>
+                    </a>
+                    <a href="#" onclick="showSection('messages')" class="ms-nav-item">
+                        <i class="fas fa-comments"></i>
+                        <span>Chat</span>
+                    </a>
+                </nav>
+            </div>
+            <div class="ms-app-actions">
+                <button class="ms-action-btn" onclick="toggleNotifications()">
+                    <i class="fas fa-bell"></i>
+                    <span class="ms-badge">3</span>
+                </button>
+                <div class="ms-user-menu">
+                    <button class="ms-user-btn" onclick="toggleUserMenu()">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="User" class="ms-user-avatar">
+                        <span>Alex Rodriguez</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="ms-user-dropdown hidden" id="user-dropdown">
+                        <a href="#" onclick="showSection('profile')">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                        <a href="#" onclick="showSettings()">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                        <hr class="ms-separator">
+                        <a href="#" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Sign out</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="ms-app-layout">
+            <aside class="ms-sidebar">
+                <nav class="ms-sidebar-nav">
+                    <div class="ms-nav-section">
+                        <h3>Overview</h3>
+                        <a href="#" onclick="showSection('dashboard')" class="ms-sidebar-link active">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Dashboard</span>
+                        </a>
+                        <a href="#" onclick="showSection('activity')" class="ms-sidebar-link">
+                            <i class="fas fa-history"></i>
+                            <span>Activity</span>
+                        </a>
+                    </div>
+                    <div class="ms-nav-section">
+                        <h3>Work</h3>
+                        <a href="#" onclick="showSection('projects')" class="ms-sidebar-link">
+                            <i class="fas fa-folder-open"></i>
+                            <span>Projects</span>
+                        </a>
+                        <a href="#" onclick="showSection('tasks')" class="ms-sidebar-link">
+                            <i class="fas fa-tasks"></i>
+                            <span>My Tasks</span>
+                        </a>
+                        <a href="#" onclick="showSection('team')" class="ms-sidebar-link">
+                            <i class="fas fa-users"></i>
+                            <span>Team</span>
+                        </a>
+                    </div>
+                    <div class="ms-nav-section">
+                        <h3>Communication</h3>
+                        <a href="#" onclick="showSection('messages')" class="ms-sidebar-link">
+                            <i class="fas fa-comments"></i>
+                            <span>Messages</span>
+                        </a>
+                        <a href="#" onclick="showSection('meetings')" class="ms-sidebar-link">
+                            <i class="fas fa-video"></i>
+                            <span>Meetings</span>
+                        </a>
+                    </div>
+                </nav>
+            </aside>
+
+            <main class="ms-main-content">
+                <!-- Dashboard Section -->
+                <div id="dashboard-section" class="ms-content-section active">
+                    <div class="ms-page-header">
+                        <div class="ms-breadcrumb">
+                            <span>Home</span>
+                            <i class="fas fa-chevron-right"></i>
+                            <span>Dashboard</span>
+                        </div>
+                        <h1>Good morning, Alex!</h1>
+                        <p>Here's what's happening with your projects today.</p>
+                    </div>
+
+                    <div class="ms-stats-grid">
+                        <div class="ms-stat-card ms-card-blue">
+                            <div class="ms-stat-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <div class="ms-stat-content">
+                                <h3 id="active-projects">3</h3>
+                                <p>Active Projects</p>
+                                <span class="ms-stat-change">+2 this month</span>
+                            </div>
+                        </div>
+                        <div class="ms-stat-card ms-card-teal">
+                            <div class="ms-stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="ms-stat-content">
+                                <h3 id="team-members">3</h3>
+                                <p>Team Members</p>
+                                <span class="ms-stat-change">2 online now</span>
+                            </div>
+                        </div>
+                        <div class="ms-stat-card ms-card-purple">
+                            <div class="ms-stat-icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <div class="ms-stat-content">
+                                <h3 id="completed-tasks">12</h3>
+                                <p>Tasks Completed</p>
+                                <span class="ms-stat-change">87% productivity</span>
+                            </div>
+                        </div>
+                        <div class="ms-stat-card ms-card-green">
+                            <div class="ms-stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="ms-stat-content">
+                                <h3 id="pending-reviews">3</h3>
+                                <p>Pending Reviews</p>
+                                <span class="ms-stat-change">8 deliveries this month</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ms-dashboard-grid">
+                        <div class="ms-card">
+                            <div class="ms-card-header">
+                                <h3>Quick Actions</h3>
+                                <button class="ms-btn ms-btn-ghost ms-btn-small">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </button>
+                            </div>
+                            <div class="ms-card-body">
+                                <div class="ms-quick-actions">
+                                    <button class="ms-action-tile" onclick="showCreateProject()">
+                                        <i class="fas fa-plus-circle"></i>
+                                        <span>New Project</span>
+                                    </button>
+                                    <button class="ms-action-tile" onclick="showSection('team')">
+                                        <i class="fas fa-user-plus"></i>
+                                        <span>Invite Team</span>
+                                    </button>
+                                    <button class="ms-action-tile" onclick="showSection('meetings')">
+                                        <i class="fas fa-calendar-plus"></i>
+                                        <span>Schedule Meeting</span>
+                                    </button>
+                                    <button class="ms-action-tile" onclick="showSection('messages')">
+                                        <i class="fas fa-comment-dots"></i>
+                                        <span>Start Chat</span>
+                                    </button>
+                                    <button class="ms-action-tile" onclick="showFindCoDeveloper()">
+                                    <i class="fas fa-user-cog"></i>
+                                    <span>Find Co-Developer</span>
+                                    </button>
+
+                                    <button class="ms-action-tile" onclick="showFindCoFounder()">
+                                    <i class="fas fa-users"></i>
+                                    <span>Find Co-Founder</span>
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ms-card">
+                            <div class="ms-card-header">
+                                <h3>Recent Activity</h3>
+                                <a href="#" onclick="showSection('activity')" class="ms-link">View all</a>
+                            </div>
+                            <div class="ms-card-body">
+                                <div id="activity-feed" class="ms-activity-feed">
+                                    <!-- Activity items will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects Section -->
+                <div id="projects-section" class="ms-content-section hidden">
+                    <div class="ms-page-header">
+                        <div class="ms-breadcrumb">
+                            <span>Home</span>
+                            <i class="fas fa-chevron-right"></i>
+                            <span>Projects</span>
+                        </div>
+                        <div class="ms-page-title">
+                            <h1>Projects</h1>
+                            <button class="ms-btn ms-btn-primary" onclick="showCreateProject()">
+                                <i class="fas fa-plus"></i>
+                                New project
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="ms-projects-filter">
+                        <div class="ms-filter-tabs">
+                            <button class="ms-filter-tab active">All projects</button>
+                            <button class="ms-filter-tab">Active</button>
+                            <button class="ms-filter-tab">Completed</button>
+                            <button class="ms-filter-tab">On hold</button>
+                        </div>
+                        <div class="ms-filter-actions">
+                            <button class="ms-btn ms-btn-ghost">
+                                <i class="fas fa-filter"></i>
+                                Filter
+                            </button>
+                            <button class="ms-btn ms-btn-ghost">
+                                <i class="fas fa-sort"></i>
+                                Sort
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="projects-grid" class="ms-projects-grid">
+                        <!-- Project cards will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Team Section -->
+                <div id="team-section" class="ms-content-section hidden">
+                    <div class="ms-page-header">
+                        <div class="ms-breadcrumb">
+                            <span>Home</span>
+                            <i class="fas fa-chevron-right"></i>
+                            <span>Team</span>
+                        </div>
+                        <div class="ms-page-title">
+                            <h1>Team Members</h1>
+                            <button class="ms-btn ms-btn-primary">
+                                <i class="fas fa-user-plus"></i>
+                                Invite member
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="team-grid" class="ms-team-grid">
+                        <!-- Team member cards will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Messages Section -->
+                <div id="messages-section" class="ms-content-section hidden">
+                    <div class="ms-messages-layout">
+                        <div class="ms-chat-sidebar">
+                            <div class="ms-chat-header">
+                                <h2>Messages</h2>
+                                <button class="ms-btn ms-btn-ghost ms-btn-small">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <div class="ms-chat-search">
+                                <div class="ms-search-box">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" placeholder="Search conversations...">
+                                </div>
+                            </div>
+                            <div id="conversations-list" class="ms-conversations-list">
+                                <!-- Conversations will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <div class="ms-chat-main">
+                            <div class="ms-chat-area-header">
+                                <h3 id="chat-title">Select a conversation</h3>
+                                <div class="ms-chat-actions">
+                                    <button class="ms-btn ms-btn-ghost ms-btn-small">
+                                        <i class="fas fa-video"></i>
+                                    </button>
+                                    <button class="ms-btn ms-btn-ghost ms-btn-small">
+                                        <i class="fas fa-phone"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="chat-messages" class="ms-chat-messages">
+                                <div class="ms-empty-chat">
+                                    <i class="fas fa-comments"></i>
+                                    <h3>Start a conversation</h3>
+                                    <p>Select someone from your team to start messaging</p>
+                                </div>
+                            </div>
+                            <div class="ms-chat-input">
+                                <div class="ms-input-group">
+                                    <button class="ms-input-action">
+                                        <i class="fas fa-paperclip"></i>
+                                    </button>
+                                    <input type="text" placeholder="Type a message..." class="ms-form-control">
+                                    <button class="ms-btn ms-btn-primary">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Section -->
+                <div id="profile-section" class="ms-content-section hidden">
+                    <div class="ms-page-header">
+                        <div class="ms-breadcrumb">
+                            <span>Home</span>
+                            <i class="fas fa-chevron-right"></i>
+                            <span>Profile</span>
+                        </div>
+                        <h1>Profile</h1>
+                    </div>
+
+                    <div class="ms-profile-layout">
+                        <div class="ms-profile-sidebar">
+                            <div class="ms-profile-card">
+                                <div class="ms-profile-avatar">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="Profile">
+                                    <button class="ms-avatar-edit">
+                                        <i class="fas fa-camera"></i>
+                                    </button>
+                                </div>
+                                <h2>Alex Rodriguez</h2>
+                                <p class="ms-profile-role">Full Stack Developer</p>
+                                <div class="ms-profile-status">
+                                    <div class="ms-status-indicator ms-status-available"></div>
+                                    <span>Available</span>
+                                </div>
+                                <div class="ms-profile-actions">
+                                    <button class="ms-btn ms-btn-outline ms-btn-full">Edit profile</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ms-profile-content">
+                            <div class="ms-profile-tabs">
+                                <button class="ms-tab-btn active" onclick="showProfileTab('overview')">Overview</button>
+                                <button class="ms-tab-btn" onclick="showProfileTab('projects')">Projects</button>
+                                <button class="ms-tab-btn" onclick="showProfileTab('skills')">Skills</button>
+                                <button class="ms-tab-btn" onclick="showProfileTab('activity')">Activity</button>
+                            </div>
+
+                            <div id="profile-tab-content" class="ms-tab-content">
+                                <div id="overview-tab" class="ms-tab-pane active">
+                                    <div class="ms-card">
+                                        <div class="ms-card-header">
+                                            <h3>About</h3>
+                                        </div>
+                                        <div class="ms-card-body">
+                                            <p>Passionate full-stack developer with 3 years of experience in modern web technologies. Specializes in React, Node.js, and cloud architecture. Currently leading development on multiple client projects and mentoring junior developers.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Notifications Panel -->
+        <div id="notifications-panel" class="ms-notifications-panel hidden">
+            <div class="ms-panel-header">
+                <h3>Notifications</h3>
+                <button class="ms-btn ms-btn-ghost ms-btn-small">Mark all as read</button>
+            </div>
+            <div id="notifications-list" class="ms-notifications-list">
+                <!-- Notifications will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Project Modal -->
+    <div id="create-project-modal" class="ms-modal hidden">
+        <div class="ms-modal-backdrop" onclick="hideModal('create-project-modal')"></div>
+        <div class="ms-modal-content ms-modal-large">
+            <div class="ms-modal-header">
+                <h2>Create new project</h2>
+                <button class="ms-modal-close" onclick="hideModal('create-project-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="ms-modal-body">
+                <form id="create-project-form" onsubmit="handleCreateProject(event)">
+                    <div class="ms-form-group">
+                        <label class="ms-form-label">Project name</label>
+                        <input type="text" class="ms-form-control" placeholder="Enter project name" required>
+                    </div>
+                    <div class="ms-form-group">
+                        <label class="ms-form-label">Description</label>
+                        <textarea class="ms-form-control" rows="3" placeholder="Describe your project..." required></textarea>
+                    </div>
+                    <div class="ms-form-row">
+                        <div class="ms-form-group">
+                            <label class="ms-form-label">Technology stack</label>
+                            <input type="text" class="ms-form-control" placeholder="e.g., React, Node.js, MongoDB">
+                        </div>
+                        <div class="ms-form-group">
+                            <label class="ms-form-label">Deadline</label>
+                            <input type="date" class="ms-form-control">
+                        </div>
+                    </div>
+                    <div class="ms-modal-actions">
+                        <button type="button" class="ms-btn ms-btn-ghost" onclick="hideModal('create-project-modal')">Cancel</button>
+                        <button type="submit" class="ms-btn ms-btn-primary">Create project</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Details Modal -->
+    <div id="project-modal" class="ms-modal hidden">
+        <div class="ms-modal-backdrop" onclick="hideModal('project-modal')"></div>
+        <div class="ms-modal-content ms-modal-large">
+            <div class="ms-modal-header">
+                <h2 id="project-modal-title">Project Details</h2>
+                <button class="ms-modal-close" onclick="hideModal('project-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="ms-modal-body">
+                <div id="project-details-content">
+                    <!-- Project details will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--co developer modal-->
+    <div id="findCoDeveloper-modal" class="ms-modal hidden">
+    <div class="ms-modal-backdrop" onclick="hideModal('findCoDeveloper-modal')"></div>
+    <div class="ms-modal-content">
+        <div class="ms-modal-header">
+            <h2>Find Your Co-Developer</h2>
+            <button class="ms-modal-close" onclick="hideModal('findCoDeveloper-modal')">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="ms-modal-body">
+            <form id="findCoDeveloper-form" onsubmit="handleFindCoDeveloperForm(event)">
+                
+                <div class="ms-form-group">
+                    <label class="ms-form-label">Full Name</label>
+                    <input type="text" class="ms-form-control" required>
+                </div>
+
+                <div class="ms-form-group">
+                    <label class="ms-form-label">Email Address</label>
+                    <input type="email" class="ms-form-control" required>
+                </div>
+
+                <div class="ms-form-group">
+                    <label class="ms-form-label">Skills (comma separated)</label>
+                    <input type="text" class="ms-form-control" required>
+                </div>
+
+                <div class="ms-form-group">
+                    <label class="ms-form-label">Experience</label>
+                    <input type="text" class="ms-form-control" placeholder="e.g., 2 years" required>
+                </div>
+
+                <div class="ms-form-group">
+                    <label class="ms-form-label">Preferred Tech Stack</label>
+                    <input type="text" class="ms-form-control" placeholder="e.g., MERN, Java, Python">
+                </div>
+
+                <div class="ms-form-group">
+                    <label class="ms-form-label">Availability</label>
+                    <input type="text" class="ms-form-control" placeholder="e.g., Part-time, Weekends">
+                </div>
+
+                <div class="ms-form-group">
+                    <label class="ms-form-label">Short Description</label>
+                    <textarea class="ms-form-control" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="ms-btn ms-btn-primary ms-btn-full">
+                    Submit Details
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<!--cofounder modal-->
+<div id="findCoFounder-modal" class="ms-modal hidden">
+    <div class="ms-modal-backdrop" onclick="hideModal('findCoFounder-modal')"></div>
+    <div class="ms-modal-content">
+        <div class="ms-modal-header">
+            <h2>Find Your Co-Founder</h2>
+            <button class="ms-modal-close" onclick="hideModal('findCoFounder-modal')">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="ms-modal-body">
+            <form id="findCoFounder-form" onsubmit="handleFindCoFounderForm(event)">
+                
+                <div class="ms-form-group">
+                    <label class="ms-form-label">Full Name</label>
+                    <input type="text" class="ms-form-control" required>
+                </div>
+
+                <div class="ms-form-group">
+                    <label class="ms-form-label">Email Address</label>
+                    <input type="email" class="ms-form-control" required>
+                </div>
+
+                <div class="ms-form-group">
+                    <label class="ms-form-label">Skills</label>
+                    <input type="text" class="ms-form-control" required>
+                </div>
+
+                <div class="ms-form-group">
+                    <label class="ms-form-label">Experience</label>
+                    <input type="text" class="ms-form-control" required>
+                </div>
+
+                <div class="ms-form-group">
+                    <label class="ms-form-label">Preferred Tech Stack</label>
+                    <input type="text" class="ms-form-control">
+                </div>
+
+                <div class="ms-form-group">
+                    <label class="ms-form-label">Availability</label>
+                    <input type="text" class="ms-form-control">
+                </div>
+
+                <div class="ms-form-group">
+                    <label class="ms-form-label">Short Description</label>
+                    <textarea class="ms-form-control" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="ms-btn ms-btn-primary ms-btn-full">
+                    Submit Details
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+    <script src="app.js"></script>
+</body>
+</html>
